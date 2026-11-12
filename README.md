@@ -18,10 +18,10 @@ curl -fsSL https://raw.githubusercontent.com/trydirect/stacker/main/install.sh |
 
 ## Platform support
 
-macOS on Apple Silicon and Intel.
+macOS on Apple Silicon and Intel, Linux on x86_64 and arm64.
 
-Linux is not served by this tap yet. The current release's Linux binary was
-built on an image whose glibc is newer than Ubuntu 22.04 and Debian 12 carry,
-so installing it there would produce a binary that cannot start. The build is
-pinned now; the Linux formulas land with the next release. Until then, use the
-installer above, which works wherever the binary does.
+The Linux binaries need glibc 2.34 or newer, which covers Ubuntu 22.04,
+Debian 12, RHEL 9 and everything later. Release builds are pinned to Ubuntu
+22.04 images for exactly this reason: a binary inherits the glibc of the
+machine that built it, and v0.3.5 was briefly built on Ubuntu 26.04, which
+made it refuse to start on the distributions most of our users run.

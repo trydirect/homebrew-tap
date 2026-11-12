@@ -7,36 +7,31 @@ class Stacker < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/trydirect/stacker/releases/download/v0.3.5/stacker-v0.3.5-aarch64-darwin.tar.gz"
-      sha256 "defdde63d98656c03e2b4d212604a87ca2cd292b35e5a8c9d34f97190834035d"
+      url "https://github.com/trydirect/stacker/releases/download/v0.3.6/stacker-v0.3.6-aarch64-darwin.tar.gz"
+      sha256 "25c466afcb4fe4d17f1f0ef4a500bcad58b08700eb091dec74a2e58fecbdbef1"
     end
     on_intel do
-      url "https://github.com/trydirect/stacker/releases/download/v0.3.5/stacker-v0.3.5-x86_64-darwin.tar.gz"
-      sha256 "cca9e82396b43302e98bdfe6ac25afbaabd116eccec03c0bb013527d37a6bbdb"
+      url "https://github.com/trydirect/stacker/releases/download/v0.3.6/stacker-v0.3.6-x86_64-darwin.tar.gz"
+      sha256 "8e011128f7d5b300c4743ae03902c117e1b610fd0ffdffbad9ee2bb7a6e75ec2"
     end
   end
 
-  # Linux is deliberately absent until the next release.
-  #
-  # The v0.3.5 Linux asset was built on ubuntu-latest, which had moved to
-  # Ubuntu 26.04, so it requires GLIBC_2.39 and refuses to start on Ubuntu
-  # 22.04 (glibc 2.35) or Debian 12 (2.36) - most of the machines that would
-  # install it. Shipping it through brew would hand people a binary that
-  # cannot run. trydirect/stacker now pins its release runners to
-  # ubuntu-22.04 and ubuntu-22.04-arm; add both Linux blocks once a release
-  # built on those has published its assets, taking each sha256 from the
-  # published tarball rather than guessing it.
-  #
-  # on_linux do
-  #   on_intel do
-  #     url ".../stacker-vX.Y.Z-x86_64-linux.tar.gz"
-  #     sha256 "..."
-  #   end
-  #   on_arm do
-  #     url ".../stacker-vX.Y.Z-aarch64-linux.tar.gz"
-  #     sha256 "..."
-  #   end
-  # end
+  # Linux is served from v0.3.6 onward. The v0.3.5 assets were built on an
+  # ubuntu-latest image that had moved to Ubuntu 26.04 and required
+  # GLIBC_2.39, which does not exist on Ubuntu 22.04 (2.35) or Debian 12
+  # (2.36). trydirect/stacker pins its release runners to ubuntu-22.04 and
+  # ubuntu-22.04-arm now; both binaries below need only GLIBC_2.34, read off
+  # the published tarballs.
+  on_linux do
+    on_arm do
+      url "https://github.com/trydirect/stacker/releases/download/v0.3.6/stacker-v0.3.6-aarch64-linux.tar.gz"
+      sha256 "eb1b3eb93ffdb204963e366a242cf068a29cec1acc29e1b949a588a30c7bea04"
+    end
+    on_intel do
+      url "https://github.com/trydirect/stacker/releases/download/v0.3.6/stacker-v0.3.6-x86_64-linux.tar.gz"
+      sha256 "8f70eb6b4635dd02dcc6ccbc349f16a1f73370ef029307ff835e8ce7b82658d0"
+    end
+  end
 
   def install
     bin.install "stacker"
