@@ -1,7 +1,8 @@
 class Stacker < Formula
   desc "Deploy pre-built self-hosted stacks to your own server or to a cloud"
   homepage "https://try.direct"
-  version "0.3.5"
+  # No `version` line: brew audit --strict rejects it as redundant,
+  # because Homebrew scans the version out of the release URL.
   license "MIT"
 
   on_macos do
