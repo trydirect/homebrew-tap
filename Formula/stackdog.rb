@@ -14,7 +14,9 @@ class Stackdog < Formula
   depends_on "rust" => :build
 
   def install
-    system "cargo", "install", *std_cargo_args, "--path", "."
+    # std_cargo_args already carries --path . in current Homebrew;
+    # adding it again makes cargo reject the command.
+    system "cargo", "install", *std_cargo_args
   end
 
   test do
