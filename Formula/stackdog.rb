@@ -6,8 +6,8 @@ class Stackdog < Formula
   # its release pipeline attaches binaries.
   # No `version` line: brew audit --strict rejects it as redundant,
   # because Homebrew scans the version out of the release URL.
-  url "https://github.com/trydirect/stackdog/archive/refs/tags/v0.3.0.tar.gz"
-  sha256 "68f8a24223129cc9e6060a6080f7406cbf416c2319a5cb68ab7972c9780fd6b3"
+  url "https://github.com/trydirect/stackdog/archive/refs/tags/v0.3.1.tar.gz"
+  sha256 "887fe8ec9fca4d4b5a1ff18fe93a4ed0f405fb392e8b675ddb970851e35f7586"
   license "MIT"
   head "https://github.com/trydirect/stackdog.git", branch: "main"
 
