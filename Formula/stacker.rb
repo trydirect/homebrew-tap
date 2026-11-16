@@ -7,12 +7,12 @@ class Stacker < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/trydirect/stacker/releases/download/v0.3.8/stacker-v0.3.8-aarch64-darwin.tar.gz"
-      sha256 "41d9154dfab14c2d7a09d997f96a0bb00150827a469f1adb41a0b7cc7f9d5b27"
+      url "https://github.com/trydirect/stacker/releases/download/v0.3.9/stacker-v0.3.9-aarch64-darwin.tar.gz"
+      sha256 "a9e1a935088c5b49f3b35c5a83aefa9e4380fb8ac8d92160862e70663db77f8c"
     end
     on_intel do
-      url "https://github.com/trydirect/stacker/releases/download/v0.3.8/stacker-v0.3.8-x86_64-darwin.tar.gz"
-      sha256 "0e6945ca5c81820e74fa89e541723c9f43eed49f61dfef7d1a192d45fd26b684"
+      url "https://github.com/trydirect/stacker/releases/download/v0.3.9/stacker-v0.3.9-x86_64-darwin.tar.gz"
+      sha256 "24f90cbed97fa2ec77d83aebf653f3e8c89eb3056eaadad31951e3fffd926b20"
     end
   end
 
@@ -24,12 +24,12 @@ class Stacker < Formula
   # the published tarballs.
   on_linux do
     on_arm do
-      url "https://github.com/trydirect/stacker/releases/download/v0.3.8/stacker-v0.3.8-aarch64-linux.tar.gz"
-      sha256 "9ea85868181353234ea377b37a27569da30c03403c8199de5c66c8da2328daaf"
+      url "https://github.com/trydirect/stacker/releases/download/v0.3.9/stacker-v0.3.9-aarch64-linux.tar.gz"
+      sha256 "7330df04e442a560da8f8a484900a2f55c3d849ff8a8971cac776d0198e1bd6a"
     end
     on_intel do
-      url "https://github.com/trydirect/stacker/releases/download/v0.3.8/stacker-v0.3.8-x86_64-linux.tar.gz"
-      sha256 "645696e1dcbeb08d29e85898de2f7dae889660ac5b6b6fbaccfdee577e1314ec"
+      url "https://github.com/trydirect/stacker/releases/download/v0.3.9/stacker-v0.3.9-x86_64-linux.tar.gz"
+      sha256 "46fce8a2ea0f52cf74a74608698ecbae2c41c4d4c9458dfd2a789d446cac4373"
     end
   end
 
