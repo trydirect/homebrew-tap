@@ -16,6 +16,10 @@ class Stackdog < Formula
   def install
     # std_cargo_args already carries --path . in current Homebrew;
     # adding it again makes cargo reject the command.
+    # The source tarball has no .git, so build.rs cannot derive the hash
+    # and --version would say (unknown). Pin it to the tag's commit; the
+    # line moves with the url and sha256 on every version bump.
+    ENV["STACKDOG_GIT_HASH"] = "235d4dd"
     system "cargo", "install", *std_cargo_args
   end
 
