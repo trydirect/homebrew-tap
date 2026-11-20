@@ -1,26 +1,38 @@
 class Stackdog < Formula
   desc "Security platform for Docker containers and Linux servers"
   homepage "https://stackdog.app"
-  # Source build for now. The stacker formula is served from prebuilt
-  # per-platform release assets; stackdog can switch to the same shape once
-  # its release pipeline attaches binaries.
   # No `version` line: brew audit --strict rejects it as redundant,
   # because Homebrew scans the version out of the release URL.
-  url "https://github.com/trydirect/stackdog/archive/refs/tags/v0.3.1.tar.gz"
-  sha256 "887fe8ec9fca4d4b5a1ff18fe93a4ed0f405fb392e8b675ddb970851e35f7586"
   license "MIT"
-  head "https://github.com/trydirect/stackdog.git", branch: "main"
 
-  depends_on "rust" => :build
+  # Served from the release assets .github/workflows/release.yml attaches on
+  # every tag: four per-platform tarballs, each holding one static `stackdog`
+  # binary. The Linux ones link musl statically, so they run on any
+  # distribution; the macOS ones are arm64 and x86_64 builds of the same tag.
+  on_macos do
+    on_arm do
+      url "https://github.com/trydirect/stackdog/releases/download/v0.3.1/stackdog-macos-aarch64.tar.gz"
+      sha256 "a0d22193f542c96580fc2c945f0bfad6f00b1f21828e542a15196563a6f47b49"
+    end
+    on_intel do
+      url "https://github.com/trydirect/stackdog/releases/download/v0.3.1/stackdog-macos-x86_64.tar.gz"
+      sha256 "520845d18a1838094493381b111a1a826a32db974b28d1c6a9b63a5e0cf8d468"
+    end
+  end
+
+  on_linux do
+    on_arm do
+      url "https://github.com/trydirect/stackdog/releases/download/v0.3.1/stackdog-linux-aarch64.tar.gz"
+      sha256 "630423266f2a1ce0b27c89d17d18dcddcea270549d05d4d8716c8fad10f9b029"
+    end
+    on_intel do
+      url "https://github.com/trydirect/stackdog/releases/download/v0.3.1/stackdog-linux-x86_64.tar.gz"
+      sha256 "c2d5a503ed3aea1251038e972ec6b2c81a20a62c8f6fe0bbecae78c7b74ca962"
+    end
+  end
 
   def install
-    # std_cargo_args already carries --path . in current Homebrew;
-    # adding it again makes cargo reject the command.
-    # The source tarball has no .git, so build.rs cannot derive the hash
-    # and --version would say (unknown). Pin it to the tag's commit; the
-    # line moves with the url and sha256 on every version bump.
-    ENV["STACKDOG_GIT_HASH"] = "235d4dd"
-    system "cargo", "install", *std_cargo_args
+    bin.install "stackdog"
   end
 
   test do
